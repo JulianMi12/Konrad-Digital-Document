@@ -25,7 +25,7 @@ public class ResourceCiudad {
 
     @PostMapping(path = {"createCiudad/{code}"})
     public String retornarCreateCiudad(@PathVariable("code") int code) {
-        return "Se esta creando una Ciudad con codigo \""+code+"\".";
+        return "Se esta creando una Ciudad con codigo \"" + code + "\".";
     }
 
     @GetMapping(path = {"readCiudades/{empty}"})
