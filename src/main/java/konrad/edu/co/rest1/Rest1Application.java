@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
- * @author Team 2
+ * @author Tu eres una perra mala
  */
 
 @SpringBootApplication
