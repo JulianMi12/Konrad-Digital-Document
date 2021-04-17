@@ -1,13 +1,18 @@
 package konrad.edu.co.rest1.controller;
 
+import konrad.edu.co.rest1.entity.TipoDocumento;
 import konrad.edu.co.rest1.service.ServicesTipoDocumento;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,16 +26,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class TipoDocumentoController {
 
     @Autowired
-    private ServicesTipoDocumento st;
+    private ServicesTipoDocumento tipoDocumentoService;
 
-    @PostMapping(path = {"createTipoDocumento/{code}/{name}"})
-    public String retornarCreateTipoDocumento(@PathVariable("code") int code, @PathVariable("name") String name) {
-        return "Se esta creando un Tipo de Documento con codigo \"" + code + "\" y nombre \"" + name + "\"";
+    @PostMapping(path = "crear")
+    public @ResponseBody
+    ResponseEntity crearCiudad(@RequestBody TipoDocumento tDocumento) {
+        try {
+            tipoDocumentoService.crearTipoDocumento(tDocumento);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = {"readTipoDocumento/{empty}"})
     public String retornarReadTipoDocumento(@PathVariable("empty") String empty) {
-        String respuesta = st.consultarTDocumento(Boolean.parseBoolean(empty));
+        String respuesta = tipoDocumentoService.consultarTDocumento(Boolean.parseBoolean(empty));
         return respuesta;
     }
 
@@ -41,7 +52,7 @@ public class TipoDocumentoController {
 
     @DeleteMapping(path = {"deleteTipoDocumento/{code}/{exist}"})
     public String retornarDeleteTipoDocumento(@PathVariable("code") int code, @PathVariable("exist") String exist) {
-        String respuesta = st.deleteTDocumento(code, Boolean.parseBoolean(exist));
+        String respuesta = tipoDocumentoService.deleteTDocumento(code, Boolean.parseBoolean(exist));
         return respuesta;
     }
 }

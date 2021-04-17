@@ -1,13 +1,19 @@
 package konrad.edu.co.rest1.controller;
 
+import konrad.edu.co.rest1.entity.Ciudad;
+import konrad.edu.co.rest1.entity.Persona;
 import konrad.edu.co.rest1.service.ServicesPersona;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,16 +27,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonaController {
     
     @Autowired
-    private ServicesPersona sp;
+    private ServicesPersona personaService;
 
-    @PostMapping(path = {"createPersona/{code}/{name}"})
-    public String retornarCreatePersona(@PathVariable("code") int code, @PathVariable("name") String name) {
-        return "Se esta creando una Persona con codigo \""+code+"\" y nombre \""+name+"\"";
+    @PostMapping(path = "crear")
+    public @ResponseBody
+    ResponseEntity crearCiudad(@RequestBody Persona persona) {
+        try {
+            personaService.crearPersona(persona);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping(path = {"readPersona/{empty}"})
     public String retornarReadPersona(@PathVariable("empty") String empty) {
-        String respuesta = sp.consultarPersonas(Boolean.parseBoolean(empty));
+        String respuesta = personaService.consultarPersonas(Boolean.parseBoolean(empty));
         return respuesta;
     }
 
@@ -41,7 +53,7 @@ public class PersonaController {
 
     @DeleteMapping(path = {"deletePersona/{code}/{exist}"})
     public String retornarDeletePersona(@PathVariable("code") int code, @PathVariable("exist") String exist) {
-        String respuesta = sp.deletePersonas(code, Boolean.parseBoolean(exist));
+        String respuesta = personaService.deletePersonas(code, Boolean.parseBoolean(exist));
         return respuesta;
     }
 }
