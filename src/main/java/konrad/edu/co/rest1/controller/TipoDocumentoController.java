@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "CRUD_T_DOCUMENTO")
 
-public class ResourceTipoDocumento {
+public class TipoDocumentoController {
 
     @Autowired
     private ServicesTipoDocumento st;

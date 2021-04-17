@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "CRUD_PERSONA")
 
-public class ResourcePersona {
+public class PersonaController {
     
     @Autowired
     private ServicesPersona sp;
