@@ -16,17 +16,25 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": null,\r\n    \"nombre\": \"CARTAGENA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_CIUDAD/createCiudad/3",
+									"raw": "http://localhost:9090/ciudad/crear",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_CIUDAD",
-										"createCiudad",
-										"3"
+										"ciudad",
+										"crear"
 									]
 								},
 								"description": "Create Ciudad "
@@ -38,18 +46,25 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_CIUDAD/deleteCiudades/2/true",
+									"raw": "http://localhost:9090/ciudad/delete",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_CIUDAD",
-										"deleteCiudades",
-										"2",
-										"true"
+										"ciudad",
+										"delete"
 									]
 								}
 							},
@@ -61,16 +76,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/CRUD_CIUDAD/readCiudades/true",
+									"raw": "http://localhost:9090/ciudad/read",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_CIUDAD",
-										"readCiudades",
-										"true"
+										"ciudad",
+										"read"
 									]
 								}
 							},
@@ -81,18 +95,25 @@
 							"request": {
 								"method": "PUT",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 5,\r\n    \"nombre\": \"BARRANQUILLA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_CIUDAD/updateCiudades/1/Juan",
+									"raw": "http://localhost:9090/ciudad/update",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_CIUDAD",
-										"updateCiudades",
-										"1",
-										"Juan"
+										"ciudad",
+										"update"
 									]
 								}
 							},
@@ -108,18 +129,25 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": null,\r\n    \"nombres\": \"Carlos\",\r\n    \"apellidos\": \"Martinez\",\r\n    \"tipoDocumento\": {\r\n        \"id\": 1\r\n        },\r\n    \"documento\": \"123456789\",\r\n    \"fechaNacimiento\": \"2001-10-10\",\r\n    \"ciudadNacimiento\":{\r\n        \"id\": 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_PERSONA/createPersona/3/Camilo",
+									"raw": "http://localhost:9090/persona/crear",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_PERSONA",
-										"createPersona",
-										"3",
-										"Camilo"
+										"persona",
+										"crear"
 									]
 								}
 							},
@@ -130,18 +158,25 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_PERSONA/deletePersona/4/true",
+									"raw": "http://localhost:9090/persona/delete",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_PERSONA",
-										"deletePersona",
-										"4",
-										"true"
+										"persona",
+										"delete"
 									]
 								}
 							},
@@ -173,18 +208,25 @@
 							"request": {
 								"method": "PUT",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 6,\r\n    \"nombres\": \"David\",\r\n    \"apellidos\": \"Martinez\",\r\n    \"tipoDocumento\": {\r\n        \"id\": 1\r\n        },\r\n    \"documento\": \"123456789\",\r\n    \"fechaNacimiento\": \"2001-10-10\",\r\n    \"ciudadNacimiento\":{\r\n        \"id\": 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_PERSONA/updatePersona/2/Daniela",
+									"raw": "http://localhost:9090/persona/update",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_PERSONA",
-										"updatePersona",
-										"2",
-										"Daniela"
+										"persona",
+										"update"
 									]
 								}
 							},
@@ -200,18 +242,25 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": null,\r\n    \"nombre\": \"Documento Nacional de Identidad\",\r\n    \"sigla\": \"DNI\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_T_DOCUMENTO/createTipoDocumento/2/Cesar",
+									"raw": "http://localhost:9090/t_documento/crear",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_T_DOCUMENTO",
-										"createTipoDocumento",
-										"2",
-										"Cesar"
+										"t_documento",
+										"crear"
 									]
 								}
 							},
@@ -222,18 +271,25 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_T_DOCUMENTO/deleteTipoDocumento/4/true",
+									"raw": "http://localhost:9090/t_documento/delete",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_T_DOCUMENTO",
-										"deleteTipoDocumento",
-										"4",
-										"true"
+										"t_documento",
+										"delete"
 									]
 								}
 							},
@@ -265,18 +321,25 @@
 							"request": {
 								"method": "PUT",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 4,\r\n    \"nombre\": \"Documento Nacional de Identidad\",\r\n    \"sigla\": \"DNA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8080/CRUD_T_DOCUMENTO/updateTipoDocumento/5/Alvaro",
+									"raw": "http://localhost:9090/t_documento/update",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_T_DOCUMENTO",
-										"updateTipoDocumento",
-										"5",
-										"Alvaro"
+										"t_documento",
+										"update"
 									]
 								}
 							},
