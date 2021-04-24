@@ -40,8 +40,7 @@ public class TipoDocumentoController {
     @GetMapping(path = "read")
     public ResponseEntity readTipoDocumento() {
         try {
-            TipoDocumento tipoDocumento = tipoDocumentoService.readTipoDocumento();
-            return new ResponseEntity(tipoDocumento, HttpStatus.OK);
+            return new ResponseEntity(tipoDocumentoService.readTipoDocumento(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -42,8 +42,6 @@ public class Ciudad implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "ciudadNacimiento")
-    private Collection<Persona> personaCollection;
 
     public Ciudad() {
     }
@@ -73,15 +71,6 @@ public class Ciudad implements Serializable {
         this.nombre = nombre;
     }
 
-    @XmlTransient
-    public Collection<Persona> getPersonaCollection() {
-        return personaCollection;
-    }
-
-    public void setPersonaCollection(Collection<Persona> personaCollection) {
-        this.personaCollection = personaCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -106,5 +95,5 @@ public class Ciudad implements Serializable {
     public String toString() {
         return "konrad.edu.co.rest1.entity.Ciudad[ id=" + id + " ]";
     }
-    
+
 }

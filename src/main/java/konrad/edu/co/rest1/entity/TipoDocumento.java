@@ -45,8 +45,6 @@ public class TipoDocumento implements Serializable {
     private String nombre;
     @Column(name = "sigla")
     private String sigla;
-    @OneToMany(mappedBy = "tipoDocumento")
-    private Collection<Persona> personaCollection;
 
     public TipoDocumento() {
     }
@@ -84,15 +82,6 @@ public class TipoDocumento implements Serializable {
         this.sigla = sigla;
     }
 
-    @XmlTransient
-    public Collection<Persona> getPersonaCollection() {
-        return personaCollection;
-    }
-
-    public void setPersonaCollection(Collection<Persona> personaCollection) {
-        this.personaCollection = personaCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -117,5 +106,5 @@ public class TipoDocumento implements Serializable {
     public String toString() {
         return "konrad.edu.co.rest1.entity.TipoDocumento[ id=" + id + " ]";
     }
-    
+
 }

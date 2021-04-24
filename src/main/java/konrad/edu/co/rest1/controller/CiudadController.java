@@ -41,8 +41,7 @@ public class CiudadController {
     @GetMapping(path = "read")
     public ResponseEntity readCiudades() {
         try {
-            Ciudad ciudad = ciudadService.readCiudad();
-            return new ResponseEntity(ciudad, HttpStatus.OK);
+            return new ResponseEntity(ciudadService.readCiudad(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }

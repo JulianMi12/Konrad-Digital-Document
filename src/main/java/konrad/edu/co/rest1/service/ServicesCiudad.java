@@ -1,5 +1,7 @@
 package konrad.edu.co.rest1.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import konrad.edu.co.rest1.entity.Ciudad;
 import konrad.edu.co.rest1.repository.CiudadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,17 @@ public class ServicesCiudad {
         ciudadRepository.save(ciudad);
     }
 
-    public Ciudad readCiudad() {
-        return ciudadRepository.findById(1).get();
-
+    public ArrayList<Ciudad> readCiudad() {
+        ArrayList<Ciudad> ciudades = new ArrayList<>();
+        Iterable rec1;
+        rec1 = ciudadRepository.findAll();
+        Iterator<Ciudad> rec2 = rec1.iterator();
+        while(rec2.hasNext()){
+            Ciudad ciudad;
+            ciudad = rec2.next();
+            ciudades.add(ciudad);
+        }
+        return ciudades;
     }
 
     public void updateCiudad(Ciudad ciudad) {

@@ -155,7 +155,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "konrad.edu.co.rest1.entity.Persona[ id=" + id + " ]";
+        return "[id=" + id + ", Nombre="+nombres+", Apellido="+apellidos+", Tipo Documento="+tipoDocumento.getId()+", Documento="+documento+", Fecha Nacimiento="+fechaNacimiento+", Ciudad Nacimiento="+ciudadNacimiento.getId()+"]";
     }
     
 }

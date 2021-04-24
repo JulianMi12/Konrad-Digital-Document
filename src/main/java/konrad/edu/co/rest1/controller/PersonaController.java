@@ -38,16 +38,17 @@ public class PersonaController {
     }
 
     @GetMapping(path = "read")
-    public ResponseEntity readPersona() {
+    public @ResponseBody
+    ResponseEntity readPersona() {
         try {
-            Persona persona = personaService.readPersona();
-            return new ResponseEntity(persona, HttpStatus.OK);
+            return new ResponseEntity(personaService.readPersona(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping(path = "update")
+    public @ResponseBody
     ResponseEntity updatePersona(@RequestBody Persona persona) {
         try {
             personaService.updatePersona(persona);
@@ -58,6 +59,7 @@ public class PersonaController {
     }
 
     @DeleteMapping(path = "delete")
+    public @ResponseBody
     ResponseEntity deletePersona(@RequestBody Persona persona) {
         try {
             personaService.deletePersona(persona);
