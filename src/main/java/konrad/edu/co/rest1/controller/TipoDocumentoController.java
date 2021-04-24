@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Team 2
  */
-
 @RestController
-@RequestMapping(path = "CRUD_T_DOCUMENTO")
+@RequestMapping(path = "t_documento")
 
 public class TipoDocumentoController {
 
@@ -39,20 +37,33 @@ public class TipoDocumentoController {
         }
     }
 
-    @GetMapping(path = {"readTipoDocumento/{empty}"})
-    public String retornarReadTipoDocumento(@PathVariable("empty") String empty) {
-        String respuesta = tipoDocumentoService.consultarTDocumento(Boolean.parseBoolean(empty));
-        return respuesta;
+    @GetMapping(path = "read")
+    public ResponseEntity readTipoDocumento() {
+        try {
+            TipoDocumento tipoDocumento = tipoDocumentoService.readTipoDocumento();
+            return new ResponseEntity(tipoDocumento, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @PutMapping(path = {"updateTipoDocumento/{code}/{name}"})
-    public String retornarUpdateTipoDocumento(@PathVariable("code") int code, @PathVariable("name") String name) {
-        return "Actualizando Tipo de Documento con codigo \"" + code + "\" a nuevo nombre \"" + name + "\".";
+    @PutMapping(path = "update")
+    ResponseEntity updateTipoDocumento(@RequestBody TipoDocumento tipoDocumento) {
+        try {
+            tipoDocumentoService.updateTipoDocumento(tipoDocumento);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @DeleteMapping(path = {"deleteTipoDocumento/{code}/{exist}"})
-    public String retornarDeleteTipoDocumento(@PathVariable("code") int code, @PathVariable("exist") String exist) {
-        String respuesta = tipoDocumentoService.deleteTDocumento(code, Boolean.parseBoolean(exist));
-        return respuesta;
+    @DeleteMapping(path = "delete")
+    ResponseEntity deleteTipoDocumento(@RequestBody TipoDocumento tipoDocumento) {
+        try {
+            tipoDocumentoService.deleteTipoDocumento(tipoDocumento);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

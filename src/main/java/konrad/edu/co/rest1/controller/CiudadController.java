@@ -1,15 +1,15 @@
 package konrad.edu.co.rest1.controller;
 
+import java.util.List;
 import konrad.edu.co.rest1.entity.Ciudad;
 import konrad.edu.co.rest1.service.ServicesCiudad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Team 2
  */
 @RestController
-@RequestMapping(path = "CRUD_CIUDAD")
+@RequestMapping(path = "ciudad")
 
 public class CiudadController {
 
@@ -38,20 +38,33 @@ public class CiudadController {
         }
     }
 
-    @GetMapping(path = {"readCiudades/{empty}"})
-    public String retornarReadCiudades(@PathVariable("empty") String empty) {
-        String respuesta = ciudadService.consultarCiudades(Boolean.parseBoolean(empty));
-        return respuesta;
+    @GetMapping(path = "read")
+    public ResponseEntity readCiudades() {
+        try {
+            Ciudad ciudad = ciudadService.readCiudad();
+            return new ResponseEntity(ciudad, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @PutMapping(path = {"updateCiudades/{code}/{name}"})
-    public String retornarUpdateCiudades(@PathVariable("code") int code, @PathVariable("name") String name) {
-        return "Actualizando Ciudad con codigo \"" + code + "\" a nuevo nombre \"" + name + "\".";
+    @PutMapping(path = "update")
+    ResponseEntity updateCiudades(@RequestBody Ciudad ciudad) {
+        try {
+            ciudadService.updateCiudad(ciudad);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @DeleteMapping(path = {"deleteCiudades/{code}/{exist}"})
-    public String retornarDeleteCiudades(@PathVariable("code") int code, @PathVariable("exist") String exist) {
-        String respuesta = ciudadService.deleteCuidades(code, Boolean.parseBoolean(exist));
-        return respuesta;
+    @DeleteMapping(path = "delete")
+    ResponseEntity deleteCiudades(@RequestBody Ciudad ciudad) {
+        try {
+            ciudadService.deleteCiudad(ciudad);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

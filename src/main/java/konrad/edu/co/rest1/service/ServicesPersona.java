@@ -20,19 +20,15 @@ public class ServicesPersona {
         personaRepository.save(persona);
     }
 
-    public String consultarPersonas(boolean empty) {
-        if (empty) {
-            return "Estas son las Personas actuales.";
-        } else {
-            return "En el momento no hay ninguna Persona añadida.";
-        }
+    public Persona readPersona() {
+        return personaRepository.findById(1).get();
     }
 
-    public String deletePersonas(int code, boolean exist) {
-        if (exist) {
-            return "Eliminando Persona con codigo \"" + code + "\".";
-        } else {
-            return "Persona con codigo \"" + code + "\" inexistente";
-        }
+    public void updatePersona(Persona persona) {
+        personaRepository.save(persona);
+    }
+
+    public void deletePersona(Persona persona) {
+        personaRepository.delete(persona);
     }
 }

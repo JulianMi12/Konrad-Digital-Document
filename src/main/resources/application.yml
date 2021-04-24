@@ -1,0 +1,22 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/konrad_nuevas_tecnologias_20211
+        username: postgres
+        password: juli2009
+        
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+        
+    application:
+        name: konrad
+    jackson:
+        serialization:
+            fail-on-empty-beans: false
+            
+info.name: konrad
+
+server:
+    port: 9090

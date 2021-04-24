@@ -20,19 +20,16 @@ public class ServicesCiudad {
         ciudadRepository.save(ciudad);
     }
 
-    public String consultarCiudades(boolean empty) {
-        if (empty) {
-            return "Estas son las Ciudades actuales.";
-        } else {
-            return "En el momento no hay ninguna Ciudad añadida.";
-        }
+    public Ciudad readCiudad() {
+        return ciudadRepository.findById(1).get();
+
     }
 
-    public String deleteCuidades(int code, boolean exist) {
-        if (exist) {
-            return "Eliminando Ciudad con codigo \"" + code + "\".";
-        } else {
-            return "Ciudad con codigo \"" + code + "\" inexistente";
-        }
+    public void updateCiudad(Ciudad ciudad) {
+        ciudadRepository.save(ciudad);
+    }
+
+    public void deleteCiudad(Ciudad ciudad) {
+        ciudadRepository.delete(ciudad);
     }
 }

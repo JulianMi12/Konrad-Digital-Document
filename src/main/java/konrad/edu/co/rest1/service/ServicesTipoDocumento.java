@@ -20,19 +20,15 @@ public class ServicesTipoDocumento {
         tDocumentoRepository.save(tipoDocumento);
     }
 
-    public String consultarTDocumento(boolean empty) {
-        if (empty) {
-            return "Estas son Tipos de Documento actuales.";
-        } else {
-            return "En el momento no hay ningun Tipo de Documento añadido.";
-        }
+    public TipoDocumento readTipoDocumento() {
+        return tDocumentoRepository.findById(1).get();
     }
 
-    public String deleteTDocumento(int code, boolean exist) {
-        if (exist) {
-            return "Eliminando Tipo de Documento con codigo \"" + code + "\".";
-        } else {
-            return "Tipo de Documento con codigo \"" + code + "\" inexistente";
-        }
+    public void updateTipoDocumento(TipoDocumento tipoDocumento) {
+        tDocumentoRepository.save(tipoDocumento);
+    }
+
+    public void deleteTipoDocumento(TipoDocumento tipoDocumento) {
+        tDocumentoRepository.delete(tipoDocumento);
     }
 }
