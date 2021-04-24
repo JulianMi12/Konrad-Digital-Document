@@ -188,16 +188,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/CRUD_PERSONA/readPersona/false",
+									"raw": "http://localhost:9090/persona/read",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_PERSONA",
-										"readPersona",
-										"false"
+										"persona",
+										"read"
 									]
 								}
 							},
@@ -301,16 +300,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/CRUD_T_DOCUMENTO/readTipoDocumento/true",
+									"raw": "http://localhost:9090/t_documento/read",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8080",
+									"port": "9090",
 									"path": [
-										"CRUD_T_DOCUMENTO",
-										"readTipoDocumento",
-										"true"
+										"t_documento",
+										"read"
 									]
 								}
 							},
