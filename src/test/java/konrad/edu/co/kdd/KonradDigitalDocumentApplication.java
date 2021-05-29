@@ -1,10 +1,10 @@
-package konrad.edu.co.rest1;
+package konrad.edu.co.kdd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Rest1ApplicationTests {
+class KonradDigitalDocumentApplication {
 
 	@Test
 	void contextLoads() {

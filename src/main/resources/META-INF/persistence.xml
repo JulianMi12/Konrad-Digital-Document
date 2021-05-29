@@ -2,11 +2,15 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="konrad.edu.co_rest1_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>konrad.edu.co.rest1.entity.Persona</class>
-    <class>konrad.edu.co.rest1.entity.TipoDocumento</class>
-    <class>konrad.edu.co.rest1.entity.Ciudad</class>
+    <class>konrad.edu.co.kdd.entity.Persona</class>
+    <class>konrad.edu.co.kdd.entity.Ciudad</class>
+    <class>konrad.edu.co.kdd.entity.TipoDocumento</class>
+    <class>konrad.edu.co.kdd.entity.Ventanilla</class>
+    <class>konrad.edu.co.kdd.entity.Funcionario</class>
+    <class>konrad.edu.co.kdd.entity.Asunto</class>
+    <class>konrad.edu.co.kdd.entity.Documento</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/konrad_nuevas_tecnologias_20211"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/Konrad_Digital_Document"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="juli2009"/>

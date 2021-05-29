@@ -1,18 +1,18 @@
-package konrad.edu.co.rest1;
+package konrad.edu.co.kdd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
- * @author Team 2
+ * @author Grupo 2
  */
 
 @SpringBootApplication
-public class Rest1Application {
+public class KonradDigitalDocumentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Rest1Application.class, args);
+		SpringApplication.run(KonradDigitalDocumentApplication.class, args);
 	}
 
 }
