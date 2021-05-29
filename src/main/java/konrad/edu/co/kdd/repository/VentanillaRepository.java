@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author Grupo 2
  */
-public interface CiudadRepository extends CrudRepository<Ventanilla, Integer>{
+public interface VentanillaRepository extends CrudRepository<Ventanilla, Integer>{
     
 }
 
