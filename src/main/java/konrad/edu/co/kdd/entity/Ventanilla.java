@@ -96,7 +96,7 @@ public class Ventanilla implements Serializable {
 
     @Override
     public String toString() {
-        return "konrad.edu.co.kdd.entity.Ventanilla[ idUsuario=" + idUsuario + " ]";
+        return " idUsuario = " + idUsuario + ", nombre = " + nombre + ", contrase\u00f1a = " + contraseña + " .\n";
     }
     
 }
