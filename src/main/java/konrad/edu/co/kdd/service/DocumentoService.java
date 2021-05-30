@@ -17,6 +17,10 @@ public class DocumentoService {
 
     @Autowired
     private DocumentoRepository documentoRepository;
+    
+    public void crearDocumento(Documento documento) {
+        documentoRepository.save(documento);
+    }
 
     public ArrayList<Documento> readDocumento() {
         ArrayList<Documento> documento = new ArrayList<>();
@@ -29,6 +33,14 @@ public class DocumentoService {
             documento.add(Documento);
         }
         return documento;
+    }
+    
+    public void updateDocumento(Documento documento) {
+        documentoRepository.save(documento);
+    }
+
+    public void deleteDocumento(Documento documento) {
+        documentoRepository.delete(documento);
     }
 
 }

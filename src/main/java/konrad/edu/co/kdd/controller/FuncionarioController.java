@@ -1,4 +1,3 @@
-
 package konrad.edu.co.kdd.controller;
 
 import konrad.edu.co.kdd.entity.Funcionario;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "funcionario")
 
 public class FuncionarioController {
-  
+
     @Autowired
     private FuncionarioService funcionarioService;
 
