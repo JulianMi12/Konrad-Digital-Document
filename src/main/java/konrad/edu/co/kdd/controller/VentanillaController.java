@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class VentanillaController {
 
     @Autowired
-    private VentanillaService ciudadService;
+    private VentanillaService ventanillaService;
 
     @PostMapping(path = "crear")
     public @ResponseBody
     ResponseEntity crearUsuario(@RequestBody Ventanilla ventanilla) {
         try {
-            ciudadService.crearUsuario(ventanilla);
+            ventanillaService.crearUsuario(ventanilla);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);

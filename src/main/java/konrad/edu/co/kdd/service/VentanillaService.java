@@ -14,9 +14,9 @@ import konrad.edu.co.kdd.repository.VentanillaRepository;
 public class VentanillaService {
 
     @Autowired
-    private VentanillaRepository ciudadRepository;
+    private VentanillaRepository ventanillaRepository;
 
     public void crearUsuario(Ventanilla ventanilla) {
-        ciudadRepository.save(ventanilla);
+        ventanillaRepository.save(ventanilla);
     }
 }

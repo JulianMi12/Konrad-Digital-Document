@@ -169,7 +169,7 @@ public class Documento implements Serializable {
 
     @Override
     public String toString() {
-        return "konrad.edu.co.kdd.entity.Documento[ numeroRadicado=" + numeroRadicado + " ]";
+        return "numeroRadicado = " + numeroRadicado + ", titulo= " + titulo + ", fechaDocumento = " + fechaDocumento + ", fechaRadicado = " + fechaRadicado + ", origen = " + origen + ", destino = " + destino.getNombre() + ", asunto = " + asunto.getNombre() + ", usuario_recibe = " + usaurioRecibe.getNombre() + ", comentarios = " + comentarios + ", anexo = " + anexo + " .\n";
     }
-    
+
 }
