@@ -126,7 +126,7 @@ public class Funcionario implements Serializable {
 
     @Override
     public String toString() {
-        return "konrad.edu.co.kdd.entity.Funcionario[ idFuncionario=" + idFuncionario + " ]";
+       return "IdFuncionario = " + idFuncionario + ", nombre = " + nombre + ", apellido = " + apellido + ", area = " + area + ", correo = " + correo + ", contraaseña = " + contraseña + " .\n";
     }
-    
+
 }
