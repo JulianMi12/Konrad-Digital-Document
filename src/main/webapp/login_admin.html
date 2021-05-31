@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Registro Administrador</title>
+</head>
+
+<body>
+    <div id="sidemenu" class="menu-collapsed bg-primary">
+        <div id="header">
+            <div id="title">
+                <a href="index.html">
+                    <div class="logo"><img src="images/Logo.png" alt=""></div>
+                </a>
+            </div>
+            <div id="menu-btn">
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------------------->
+        <div id="profile">
+            <div id="photo"><img src="images/nav-index.png" alt=""></div>
+            <div id="name"><span>Selecciona tu cateoria:</span></div>
+        </div>
+        <!------------------------------------------------------------------------------------------->
+        <div id="menu-items">
+            <div class="item">
+                <a href="login_admin.html">
+                    <div class="icon"><img src="images/admin.png" alt=""></div>
+                    <div class="title"><span>Servicios de Administrador</span></div>
+                </a>
+            </div>
+            <hr class="menu-br">
+            <div class="item">
+                <a href="login_funcionario.html">
+                    <div class="icon"><img src="images/admin.png" alt=""></div>
+                    <div class="title"><span>Servicios de Funcoinario</span></div>
+                </a>
+            </div>
+            <hr class="menu-br">
+            <div class="item">
+                <a href="login_ventanilla.html">
+                    <div class="icon"><img src="images/admin.png" alt=""></div>
+                    <div class="title"><span>Servicios de Ventanilla</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <header>
+            <div id="cont-title" class="bg-primary">
+                <h1><b>Konrad Digital Document</b></h1>
+            </div>
+        </header>
+        <div class="imgs">
+            <img src="images/login.png" alt="">
+        </div>
+        <div class="body-form">
+            <form action="panel_admin/panel_admin.html" id="form">
+                <div class="form">
+                    <h1>Registro</h1>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Codigo de Administrador</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="password" name="" id="password" required><span class="barra"></span>
+                        <label for="">Password</label>
+                    </div>
+                    <button type="submit" class="btn">CONTINUAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="py-5 bg-dark ">
+        <div class="containerBlack ">
+            <p class="m-0 text-center text-white ">Copyright &copy; Fundación Universitaria Konrad Lorenz 2021</p>
+        </div>
+    </footer>
+
+    <script src="js/barra-lateral.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+.body-form {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form h1 {
+    text-align: center;
+    font-size: 30px;
+    padding: 15px;
+    color: #1f85d8;
+}
+
+form {
+    margin-bottom: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #fff;
+    opacity: 0.7;
+    padding: 40px 0;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+.m {
+    margin-bottom: 193px;
+}
+
+.form {
+    width: 100%;
+    margin: auto;
+    max-width: 100%;
+    float: none;
+    text-align: center;
+}
+
+form .grupo {
+    position: relative;
+    margin: 45px;
+}
+
+input {
+    background: none;
+    color: #c6c6c6;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #49454567;
+}
+
+textarea {
+    min-height: 200PX;
+    max-height: 200px;
+    min-width: 100%;
+    max-width: 100%;
+    font-size: 18px;
+}
+
+input:focus {
+    outline: none;
+    color: rgb(94, 93, 93);
+}
+
+label {
+    color: #49454567;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    top: 10px;
+    transition: 0.5s ease all;
+    pointer-events: none;
+}
+
+input:focus~label,
+input:valid~label {
+    top: -14px;
+    font-size: 13px;
+    color: #0981e4;
+}
+
+.desc {
+    color: #49454567;
+    font-size: 16px;
+    font-family: monospace;
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.imgs {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.s {
+    margin-top: 50px;
+}
+
+.imgs img {
+    width: 200px;
+}
+
+.barra {
+    position: absolute;
+    display: block;
+    right: 50%;
+    width: 100%;
+}
+
+.barra::before {
+    content: "";
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to right, #ffd6d1, rgba(31, 133, 216, 0.5));
+    transition: 0.3s ease width;
+}
+
+input:focus~.barra::before {
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    background: #067ad8;
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 20px;
+    margin: 20px 0;
+    border: none;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+
+.btn:hover {
+    background: #4194d8;
+    color: #fff;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media only screen and (min-width:1000px) {
+    form {
+        width: 40%;
+    }
+}

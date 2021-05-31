@@ -1,0 +1,293 @@
+:root {
+    --width: 300px;
+    --padding: 10px;
+    --bgcolor: rgb(52, 52, 52);
+    --hovercolor: rgb(23, 23, 23);
+    --width-collapsed: 50px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    margin-left: var(--width-collapsed);
+}
+
+.body-expanded {
+    margin-left: var(--width);
+}
+
+#sidemenu {
+    color: white;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#sidemenu a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/*---------------------------------------------------------------------------------------------------------*/
+
+#sidemenu #header {
+    box-sizing: border-box;
+    border-bottom: solid 1px white;
+}
+
+#sidemenu #header #title {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#sidemenu #header #title a {
+    cursor: pointer;
+}
+
+#sidemenu #header #title,
+#sidemenu #header #menu-btn {
+    vertical-align: middle;
+}
+
+#sidemenu #header #menu-btn {
+    display: inline-block;
+    transition: background 0.5s;
+}
+
+#sidemenu #header #menu-btn {
+    cursor: pointer;
+    padding: 10px;
+    width: var(--width-collapsed);
+    box-sizing: border-box;
+}
+
+#sidemenu #header #menu-btn:hover {
+    background-color: #1f85d8;
+}
+
+#sidemenu #header #menu-btn .btn-hamburger {
+    background-color: #fff;
+    width: 100%;
+    height: 2px;
+    margin: 5px 0;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+#sidemenu #profile {
+    border-bottom: solid 1px white;
+    text-align: center;
+}
+
+#sidemenu #profeile #photo {
+    box-sizing: border-box;
+    padding: var(--padding);
+    margin: 0 auto;
+}
+
+#sidemenu #profile #photo img {
+    border-radius: 50%;
+    width: 60%;
+}
+
+#sidemenu #profile #photo,
+#sidemenu #profile #name {
+    font-size: 24px;
+    padding: var(--padding) 0;
+    overflow: hidden;
+}
+
+#sidemenu #menu-items .item .icon {
+    display: inline-block;
+}
+
+#sidemenu #menu-items .item .icon,
+#sidemenu #menu-items .item .title {
+    font-size: 14px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+@media (max-width:700px) {
+    #sidemenu {
+        float: left;
+        top: 0;
+        left: 0;
+    }
+}
+
+.menu-expanded #menu-items .item .title {
+    display: inline-block;
+}
+
+.body-expanded #sidemenu #menu-items .item {
+    width: 85%;
+    margin-left: 8%;
+}
+
+#sidemenu #menu-items .item a {
+    display: block;
+}
+
+#sidemenu #menu-items .item a:hover {
+    background-color: #1f85d8;
+}
+
+#sidemenu #menu-items .item .icon {
+    box-sizing: border-box;
+    padding: var(--padding);
+    width: var(--width-collapsed);
+}
+
+#sidemenu #menu-items .item .icon img {
+    width: 100%;
+}
+
+#sidemenu #menu-items .item .title {
+    padding: var(--padding) 0;
+}
+
+#sidemenu #menu-items .item.separator {
+    height: 1px;
+    border-bottom: solid 1px white;
+    margin: 0 0;
+}
+
+.menu-expanded {
+    width: var(--width);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.menu-expanded #header #title {
+    display: inline-block;
+    width: calc(100% - 50px);
+    margin-right: -5px;
+    padding: var(--padding);
+}
+
+.menu-expanded #header #title span {
+    width: calc(var(--width) - var(--width-collapsed) - 5px);
+    overflow: hidden;
+    display: inline-block;
+}
+
+.menu-expanded #profile #photo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
+    width: 110px;
+}
+
+.menu-br {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 2px;
+}
+
+.menu-expanded .menu-br {
+    width: 85%;
+}
+
+.menu-collapsed .menu-br {
+    width: 100%;
+}
+
+.menu-expanded #profile #name {
+    width: 100%;
+}
+
+.menu-collapsed {
+    width: var(--width-collapsed);
+}
+
+.menu-collapsed #header #title {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-collapsed #profile #name {
+    display: none;
+}
+
+.menu-collapsed .title {
+    display: none;
+}
+
+.footer {
+    background-color: #222;
+}
+
+@media (max-width:362px) {
+    .menu-expanded {
+        width: 200px;
+    }
+    .body-expanded #sidemenu #menu-items .item {
+        width: 100%;
+    }
+    #sidemenu #menu-items .item .icon,
+    #sidemenu #menu-items .item .title {
+        font-size: 11px;
+    }
+    .body-expanded #sidemenu #menu-items .item {
+        margin-left: 0;
+    }
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+#cont-title {
+    text-align: center;
+    padding: 30px 0;
+    width: 100%;
+    border-left: 1px solid #fff;
+    color: #fff;
+}
+
+@media (min-width:700px) {
+    #cont-title h1 {
+        font-size: 50px;
+    }
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.rows {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    margin-top: 3%;
+}
+
+.title h2 {
+    font-size: 40px;
+    text-align: center;
+}
+
+.card-header {
+    color: white;
+}
+
+.panels {
+    margin: 3.33%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card a {
+    text-decoration: none;
+}
