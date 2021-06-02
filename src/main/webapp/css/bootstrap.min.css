@@ -310,7 +310,8 @@ svg {
 
 table {
     caption-side: bottom;
-    border-collapse: collapse
+    border-collapse: collapse;
+    border: 1px solid var(--bs-blue);
 }
 
 caption {
@@ -332,8 +333,11 @@ th,
 thead,
 tr {
     border-color: inherit;
-    border-style: solid;
     border-width: 0
+}
+
+thead {
+    border: 1px solid var(--bs-blue);
 }
 
 label {
@@ -1909,10 +1913,8 @@ progress {
     --bs-table-hover-color: #444;
     --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
     width: 100%;
-    margin-bottom: 1rem;
     color: #444;
     vertical-align: top;
-    border-color: #dee2e6
 }
 
 .table>:not(caption)>*>* {
@@ -1931,7 +1933,7 @@ progress {
 }
 
 .table>:not(:last-child)>:last-child>* {
-    border-bottom-color: currentColor
+    border-bottom-color: var(--bs-blue)
 }
 
 .caption-top {

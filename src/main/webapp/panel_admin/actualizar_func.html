@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Creación de un Asunto</title>
+    <title>Actualizar Funcionarios</title>
 </head>
 
 <body>
@@ -105,14 +105,34 @@
             <img src="../images/login.png" alt="">
         </div>
         <div class="body-form">
-            <form id="form" class="m">
+            <form id="form">
                 <div class="form">
-                    <h1>Creación de un Asunto</h1>
+                    <h1>Actualizar Funcionarios</h1>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Id Funcionario a Actualizar</label>
+                    </div>
                     <div class="grupo">
                         <input type="text" name="" id="name" required><span class="barra"></span>
                         <label for="">Nombre</label>
                     </div>
-                    <button type="submit" class="btn" id="createA">CREAR</button>
+                    <div class="grupo">
+                        <input type="text" name="" id="name" required><span class="barra"></span>
+                        <label for="">Apellido</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Area</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="email" name="" id="name" required><span class="barra"></span>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="password" name="" id="password" required><span class="barra"></span>
+                        <label for="">Password</label>
+                    </div>
+                    <button type="submit" class="btn" id="createF">CREAR</button>
                 </div>
             </form>
         </div>
@@ -126,8 +146,8 @@
 
     <script src="../js/barra-lateral.js"></script>
     <script>
-        document.getElementById('createA').onclick = function() {
-            alert('Asunto creado correctamente.');
+        document.getElementById('createF').onclick = function() {
+            alert('Funcionario actualizado correctamente.');
         }
     </script>
 </body>

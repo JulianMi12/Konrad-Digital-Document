@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Creación de un Asunto</title>
+    <title>Actualizar Asuntos</title>
 </head>
 
 <body>
@@ -105,9 +105,13 @@
             <img src="../images/login.png" alt="">
         </div>
         <div class="body-form">
-            <form id="form" class="m">
+            <form id="form">
                 <div class="form">
-                    <h1>Creación de un Asunto</h1>
+                    <h1>Actualizar Asuntos</h1>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Id Asunto a Actualizar</label>
+                    </div>
                     <div class="grupo">
                         <input type="text" name="" id="name" required><span class="barra"></span>
                         <label for="">Nombre</label>
@@ -127,7 +131,7 @@
     <script src="../js/barra-lateral.js"></script>
     <script>
         document.getElementById('createA').onclick = function() {
-            alert('Asunto creado correctamente.');
+            alert('Asunto actualizado correctamente.');
         }
     </script>
 </body>

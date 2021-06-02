@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Creación de un Asunto</title>
+    <title>Listado de Usaurios</title>
 </head>
 
 <body>
@@ -101,20 +101,53 @@
                 <h1><b>Konrad Digital Document</b></h1>
             </div>
         </header>
+        <div class="title">
+            <h2>Listado de Usaurios</h2>
+        </div>
         <div class="imgs">
-            <img src="../images/login.png" alt="">
+            <img src="../images/lista.png" alt="">
         </div>
         <div class="body-form">
-            <form id="form" class="m">
-                <div class="form">
-                    <h1>Creación de un Asunto</h1>
-                    <div class="grupo">
-                        <input type="text" name="" id="name" required><span class="barra"></span>
-                        <label for="">Nombre</label>
-                    </div>
-                    <button type="submit" class="btn" id="createA">CREAR</button>
+            <div class="container">
+                <div class="row">
+                    <table class="table table-hover m">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary">
+                                <th scope="row">Primary</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr class="table-secondary">
+                                <th scope="row">Secondary</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">Primary</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr class="table-secondary">
+                                <th scope="row">Secondary</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="row">Primary</th>
+                                <td>Column content</td>
+                                <td>Column content</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -125,11 +158,6 @@
     </footer>
 
     <script src="../js/barra-lateral.js"></script>
-    <script>
-        document.getElementById('createA').onclick = function() {
-            alert('Asunto creado correctamente.');
-        }
-    </script>
 </body>
 
 </html>

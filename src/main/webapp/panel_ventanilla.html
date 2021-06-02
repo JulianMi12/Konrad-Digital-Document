@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Creación de un Funcionario</title>
+</head>
+
+<body>
+    <div id="sidemenu" class="menu-collapsed bg-primary">
+        <div id="header">
+            <div id="title">
+                <a href="index.html">
+                    <div class="logo"><img src="images/Logo.png" alt=""></div>
+                </a>
+            </div>
+            <div id="menu-btn">
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------------------->
+        <div id="profile">
+            <div id="photo"><img src="images/ventanilla1.png" alt=""></div>
+            <div id="name"><span>Ing. Miranda</span></div>
+        </div>
+        <!------------------------------------------------------------------------------------------->
+        <div id="menu-items">
+            <div class="item">
+                <a href="index.html">
+                    <div class="icon"><img src="images/out.png" alt=""></div>
+                    <div class="title"><span>Inicio</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <header>
+            <div id="cont-title" class="bg-primary">
+                <h1><b>Konrad Digital Document</b></h1>
+            </div>
+        </header>
+        <div class="imgs">
+            <img src="../images/login.png" alt="">
+        </div>
+        <div class="body-form">
+            <form id="form">
+                <div class="form">
+                    <h1>Creación de un Funcionario</h1>
+                    <div class="grupo">
+                        <input type="text" name="" id="name" required><span class="barra"></span>
+                        <label for="">Titulo</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="date" name="" id="name" value="" required><span class="barra"></span>
+                        <label class="date" for="">Fecha Documento</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="date" name="" id="name" required><span class="barra"></span>
+                        <label class="date" for="">Fecha Radicado</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="text" name="" id="name" required><span class="barra"></span>
+                        <label for="">Origen</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Destino</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Asunto</label>
+                    </div>
+                    <div class="grupo">
+                        <input type="number" name="" id="name" required><span class="barra"></span>
+                        <label for="">Usuario que Recibe</label>
+                    </div>
+                    <div class="grupo">
+                        <textarea class="area" placeholder="Comentarios"></textarea><span class="barra"></span>
+                        <label for=""></label>
+                    </div>
+                    <div class="grupo">
+                        <input type="text" name="" id="name" required><span class="barra"></span>
+                        <label for="">Anexo</label>
+                    </div>
+                    <button type="submit" class="btn" id="createF">CREAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="py-5 bg-dark ">
+        <div class="containerBlack ">
+            <p class="m-0 text-center text-white ">Copyright &copy; Fundación Universitaria Konrad Lorenz 2021</p>
+        </div>
+    </footer>
+
+    <script src="js/barra-lateral.js"></script>
+    <script>
+        document.getElementById('createF').onclick = function() {
+            alert('Documento creado y enviado correctamente.');
+        }
+    </script>
+</body>
+
+</html>

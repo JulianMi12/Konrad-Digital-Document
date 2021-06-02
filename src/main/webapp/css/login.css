@@ -24,8 +24,16 @@ form {
     border-radius: 10px;
 }
 
+.b {
+    margin-bottom: 100px;
+}
+
 .m {
     margin-bottom: 193px;
+}
+
+.n {
+    margin-bottom: 279px;
 }
 
 .form {
@@ -76,8 +84,22 @@ label {
     pointer-events: none;
 }
 
+.date {
+    display: none;
+    color: #49454567;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    top: 10px;
+    transition: 0.5s ease all;
+    pointer-events: none;
+}
+
 input:focus~label,
-input:valid~label {
+input:valid~label,
+input:valid~label .date {
+    display: block;
     top: -14px;
     font-size: 13px;
     color: #0981e4;
