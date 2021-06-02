@@ -26,12 +26,32 @@ public class FuncionarioController {
     @Autowired
     private FuncionarioService funcionarioService;
 
-    @PostMapping(path = "crear")
+    @PostMapping(path = "create")
     public @ResponseBody
     ResponseEntity crearFuncionario(@RequestBody Funcionario funcionario) {
         try {
+            String clave = funcionario.getContraseña();
+            if (clave.length() < 8) {
+                return new ResponseEntity("La contraseña debe tener almenos 8 caracteres.", HttpStatus.LENGTH_REQUIRED);
+            }
+            char car;
+            int num = 0, may = 0, min = 0;
+            for (int i = 0; i < clave.length(); i++) {
+                car = clave.charAt(i);
+                if (Character.isDigit(car)) {
+                    num++;
+                } else if (Character.isUpperCase(car)) {
+                    may++;
+                } else if (Character.isLowerCase(car)) {
+                    min++;
+                }
+            }
+            if (may == 0 || min == 0 || num == 0) {
+                return new ResponseEntity("La contraseña debe tener almenos 1 letra en mayuscula, 1 letra en minuscula y un numero.", HttpStatus.LENGTH_REQUIRED);
+            }
             funcionarioService.crearFuncionario(funcionario);
             return new ResponseEntity(HttpStatus.OK);
+
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }

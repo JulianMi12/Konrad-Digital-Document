@@ -25,7 +25,7 @@ public class DocumentoController {
 
     @Autowired
     private DocumentoService documentoService;
-    
+
     @PostMapping(path = "crear")
     public @ResponseBody
     ResponseEntity crearDocumento(@RequestBody Documento documento) {
@@ -45,7 +45,16 @@ public class DocumentoController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @GetMapping(path = "reada")
+    public ResponseEntity readDocAsignados() {
+        try {
+            return new ResponseEntity(documentoService.readDocAsignados(2), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping(path = "update")
     ResponseEntity updateDocumento(@RequestBody Documento documento) {
         try {
@@ -65,6 +74,5 @@ public class DocumentoController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    
+
 }

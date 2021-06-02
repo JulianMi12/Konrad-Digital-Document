@@ -1,7 +1,6 @@
 package konrad.edu.co.kdd.controller;
 
 import konrad.edu.co.kdd.entity.Asunto;
-import static konrad.edu.co.kdd.entity.Documento_.asunto;
 import konrad.edu.co.kdd.service.AsuntoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,18 +10,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author Grupo 2
  */
+@RestController
+@RequestMapping(path = "asunto")
+
 public class AsuntoController {
 
     @Autowired
     private AsuntoService asuntoService;
 
-    @PostMapping(path = "crear")
+    @PostMapping(path = "create")
     public @ResponseBody
     ResponseEntity crearAsunto(@RequestBody Asunto asunto) {
         try {

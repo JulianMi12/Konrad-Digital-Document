@@ -1,6 +1,5 @@
 package konrad.edu.co.kdd.controller;
 
-import konrad.edu.co.kdd.entity.Documento;
 import konrad.edu.co.kdd.entity.Ventanilla;
 import konrad.edu.co.kdd.service.VentanillaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +26,29 @@ public class VentanillaController {
     @Autowired
     private VentanillaService ventanillaService;
 
-    @PostMapping(path = "crear")
+    @PostMapping(path = "create")
     public @ResponseBody
     ResponseEntity crearUsuario(@RequestBody Ventanilla ventanilla) {
         try {
+            String clave = ventanilla.getContraseña();
+            if (clave.length() < 8) {
+                return new ResponseEntity("La contraseña debe tener almenos 8 caracteres.", HttpStatus.LENGTH_REQUIRED);
+            }
+            char car;
+            int num = 0, may = 0, min = 0;
+            for (int i = 0; i < clave.length(); i++) {
+                car = clave.charAt(i);
+                if (Character.isDigit(car)) {
+                    num++;
+                } else if (Character.isUpperCase(car)) {
+                    may++;
+                } else if (Character.isLowerCase(car)) {
+                    min++;
+                }
+            }
+            if (may == 0 || min == 0 || num == 0) {
+                return new ResponseEntity("La contraseña debe tener almenos 1 letra en mayuscula, 1 letra en minuscula y un numero.", HttpStatus.LENGTH_REQUIRED);
+            }
             ventanillaService.crearUsuario(ventanilla);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {

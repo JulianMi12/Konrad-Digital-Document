@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FuncionarioService {
-    
+
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
@@ -26,7 +26,20 @@ public class FuncionarioService {
         Iterable rec1;
         rec1 = funcionarioRepository.findAll();
         Iterator<Funcionario> rec2 = rec1.iterator();
-        while(rec2.hasNext()){
+        while (rec2.hasNext()) {
+            Funcionario funcionario;
+            funcionario = rec2.next();
+            funcionarios.add(funcionario);
+        }
+        return funcionarios;
+    }
+    
+        public ArrayList<Funcionario> readFuncionarioo() {
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+        Iterable rec1;
+        rec1 = funcionarioRepository.findAll();
+        Iterator<Funcionario> rec2 = rec1.iterator();
+        while (rec2.hasNext()) {
             Funcionario funcionario;
             funcionario = rec2.next();
             funcionarios.add(funcionario);
