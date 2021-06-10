@@ -12,7 +12,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -77,10 +81,16 @@ public class DocumentoService {
 
     public static void writePDF() {
         Document document = new Document();
+        Calendar calendario = Calendar.getInstance();
+        Calendar calendario2 = new GregorianCalendar();
+        int hora, minutos, segundos;
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND);
 
         try {
             String path = new File(".").getCanonicalPath();
-            String FILE_NAME = path + "/itext-test-Reporte_Asuntos.pdf";
+            String FILE_NAME = path + "/Reporte_Asuntos" +hora+"-"+minutos+"-"+segundos+".pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
 
