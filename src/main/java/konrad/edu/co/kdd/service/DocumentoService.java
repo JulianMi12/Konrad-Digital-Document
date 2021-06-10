@@ -1,17 +1,21 @@
 package konrad.edu.co.kdd.service;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import konrad.edu.co.kdd.entity.Documento;
 import konrad.edu.co.kdd.repository.DocumentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +34,6 @@ public class DocumentoService {
 
     public void crearDocumento(Documento documento) {
         documentoRepository.save(documento);
-        sendEmail(documento);
 
     }
 
@@ -63,6 +66,62 @@ public class DocumentoService {
         return documento;
     }
 
+    public static void main(String[] args) {
+        writePDF();
+    }
+
+    private static void writePDF() {
+
+        Document document = new Document();
+
+        try {
+            String path = new File(".").getCanonicalPath();
+            String FILE_NAME = path + "/itext-test-file.pdf";
+
+            PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
+
+            document.open();
+
+            Paragraph paragraphHello = new Paragraph();
+            paragraphHello.add("Hello iText paragraph!");
+            paragraphHello.setAlignment(Element.ALIGN_JUSTIFIED);
+
+            document.add(paragraphHello);
+
+            Paragraph paragraphLorem = new Paragraph();
+            paragraphLorem.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    + "Maecenas finibus fringilla turpis, vitae fringilla justo."
+                    + "Sed imperdiet purus quis tellus molestie, et finibus risus placerat."
+                    + "Donec convallis eget felis vitae interdum. Praesent varius risus et dictum hendrerit."
+                    + "Aenean eu semper nunc. Aenean posuere viverra orci in hendrerit. Aenean dui purus, eleifend nec tellus vitae,"
+                    + " pretium dignissim ex. Aliquam erat volutpat. ");
+
+            java.util.List<Element> paragraphList = new ArrayList<>();
+
+            paragraphList = paragraphLorem.breakUp();
+
+            Font f = new Font();
+            f.setFamily(FontFamily.COURIER.name());
+            f.setStyle(Font.BOLDITALIC);
+            f.setSize(8);
+
+            Paragraph p3 = new Paragraph();
+            p3.setFont(f);
+            p3.addAll(paragraphList);
+            p3.add("TEST LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT!");
+
+            document.add(paragraphLorem);
+            document.add(p3);
+            document.close();
+
+        } catch (FileNotFoundException | DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void updateDocumento(Documento documento) {
         documentoRepository.save(documento);
     }
@@ -71,35 +130,4 @@ public class DocumentoService {
         documentoRepository.delete(documento);
     }
 
-    public void sendEmail(Documento documento) {
-        Properties properties = new Properties();
-        properties.setProperty("mail.smtp.host", "smtp.gmail.com");
-        properties.setProperty("mail.smtp.starttls.enable", "true");
-        properties.setProperty("mail.smtp.port", "587");
-
-        Session sesion = Session.getDefaultInstance(properties);
-        String correoEnvia = "correokdd@gmail.com";
-        String contrasena = "konradDigital2009";
-        String receptor = documentoRepository.findById(documento.getDestino().getIdFuncionario()).get().getDestino().getCorreo();
-        String asunto = documentoRepository.findById(documento.getAsunto().getIdAsunto()).get().getAsunto().getNombre();
-        String mensaje = "Sr. Miranda le ha llegado nueva correspondencia de " + documento.getOrigen() + " Konrad Digital Document.";
-
-        MimeMessage mail = new MimeMessage(sesion);
-        try {
-            mail.setFrom(new InternetAddress(correoEnvia));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));
-            mail.setSubject(asunto);
-            mail.setText(mensaje);
-
-            Transport transportar = sesion.getTransport("smtp");
-            transportar.connect(correoEnvia, contrasena);
-            transportar.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-            transportar.close();
-        } catch (AddressException ex) {
-            Logger.getLogger(DocumentoService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(DocumentoService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 }
