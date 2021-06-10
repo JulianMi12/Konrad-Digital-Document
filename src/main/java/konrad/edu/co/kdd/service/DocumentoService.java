@@ -7,6 +7,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -66,35 +67,42 @@ public class DocumentoService {
         return documento;
     }
 
-    public static void main(String[] args) {
-        writePDF();
+    public void updateDocumento(Documento documento) {
+        documentoRepository.save(documento);
     }
 
-    private static void writePDF() {
+    public void deleteDocumento(Documento documento) {
+        documentoRepository.delete(documento);
+    }
 
+    public static void writePDF() {
         Document document = new Document();
 
         try {
             String path = new File(".").getCanonicalPath();
-            String FILE_NAME = path + "/itext-test-file.pdf";
+            String FILE_NAME = path + "/itext-test-Reporte_Asuntos.pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
 
             document.open();
 
             Paragraph paragraphHello = new Paragraph();
-            paragraphHello.add("Hello iText paragraph!");
+            paragraphHello.add("Reporte 1");
             paragraphHello.setAlignment(Element.ALIGN_JUSTIFIED);
 
             document.add(paragraphHello);
 
             Paragraph paragraphLorem = new Paragraph();
-            paragraphLorem.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                    + "Maecenas finibus fringilla turpis, vitae fringilla justo."
-                    + "Sed imperdiet purus quis tellus molestie, et finibus risus placerat."
-                    + "Donec convallis eget felis vitae interdum. Praesent varius risus et dictum hendrerit."
-                    + "Aenean eu semper nunc. Aenean posuere viverra orci in hendrerit. Aenean dui purus, eleifend nec tellus vitae,"
-                    + " pretium dignissim ex. Aliquam erat volutpat. ");
+            paragraphLorem.add("Señores\n"
+                    + "\n"
+                    + "\n"
+                    + "Me dirijo a ustedes respetuosamente para agradecer por la gran oportunidad de crecimiento dentro de la empresa que me han otorgado al ascenderme en dia de ayer a un cargo superior, y por tener en cuenta mi trabajo, esfuerzo y perseverancia para asumir esta nueva posicion y depositar su confianza en mí.\n"
+                    + "\n"
+                    + "\n"
+                    + "Espero seguir siendo parte de este gran equipo de trabajo que se caracteriza por tener un optimo ambiente laboral y las excelentes herramientas que esta empresa me ha ofrecido desde que inicie mis labores aqui, por lo cual extiendo nuevamente mis mas sinceros agradecimientos, deseando muchos éxitos para ustedes también.\n"
+                    + "\n"
+                    + "\n"
+                    + "Cordialmente,\n");
 
             java.util.List<Element> paragraphList = new ArrayList<>();
 
@@ -108,9 +116,8 @@ public class DocumentoService {
             Paragraph p3 = new Paragraph();
             p3.setFont(f);
             p3.addAll(paragraphList);
-            p3.add("TEST LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT!");
+            p3.add("Jhonatan Calderón");
 
-            document.add(paragraphLorem);
             document.add(p3);
             document.close();
 
@@ -121,13 +128,4 @@ public class DocumentoService {
         }
 
     }
-
-    public void updateDocumento(Documento documento) {
-        documentoRepository.save(documento);
-    }
-
-    public void deleteDocumento(Documento documento) {
-        documentoRepository.delete(documento);
-    }
-
 }

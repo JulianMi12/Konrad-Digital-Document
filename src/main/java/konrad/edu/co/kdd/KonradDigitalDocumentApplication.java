@@ -13,6 +13,7 @@ public class KonradDigitalDocumentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KonradDigitalDocumentApplication.class, args);
+                
 	}
 
 }
