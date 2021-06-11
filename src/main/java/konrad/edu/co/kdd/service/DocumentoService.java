@@ -1,28 +1,26 @@
 package konrad.edu.co.kdd.service;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import konrad.edu.co.kdd.entity.Documento;
 import konrad.edu.co.kdd.repository.DocumentoRepository;
+import konrad.edu.co.kdd.repository.FooterPiePaginaiText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +50,7 @@ public class DocumentoService {
         int codDestinatario = documento.getDestino().getIdFuncionario();
         int codAsunto = documento.getAsunto().getIdAsunto();
         String correoDestinatario = funcionarioService.getById(codDestinatario).getCorreo();
-        String contenido = "Sr/a. " + funcionarioService.getById(codDestinatario).getApellido() + ".\n\nTiene nueva correspondencia de Konrad Digital Document de parte de \"" + documento.getOrigen() + "\" con asunto \""+asuntoService.getById(codAsunto).getNombre()+"\" para resolver en su buzón de documentos.";
+        String contenido = "Sr/a. " + funcionarioService.getById(codDestinatario).getApellido() + ".\n\nTiene nueva correspondencia de Konrad Digital Document de parte de \"" + documento.getOrigen() + "\" con asunto \"" + asuntoService.getById(codAsunto).getNombre() + "\" para resolver en su buzón de documentos.";
         sendMail.sendMail("correokdd@gmail.com", correoDestinatario, "Nueva Correspondencia", contenido);
     }
 
@@ -94,6 +92,8 @@ public class DocumentoService {
     }
 
     public void writePDF(Documento documento) {
+        ArrayList<Documento> doc = readDocAsignados(documento.getNumeroRadicado());
+
         Calendar calendario = Calendar.getInstance();
         int hora, minutos, segundos;
         hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -105,13 +105,31 @@ public class DocumentoService {
             String FILE_NAME = path + "/Reporte_Asuntos_id=" + documento.getNumeroRadicado() + "_" + hora + "-" + minutos + "-" + segundos + ".pdf";
             PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
 
-            System.out.println("");
             document.open();
-            Paragraph paragraphHello = new Paragraph();
-            paragraphHello.add("Hello iText paragraph!");
-            paragraphHello.setAlignment(Element.ALIGN_JUSTIFIED);
 
-            document.add(paragraphHello);
+            Paragraph titulo = new Paragraph("Reporte Funcionario/a " + documentoRepository.findById(doc.get(0).getNumeroRadicado()).get().getDestino().getApellido() + "\n\n\n", FontFactory.getFont("arial", 22, Font.BOLD));
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            document.add(titulo);
+
+            PdfPTable tabla = new PdfPTable(4);
+            tabla.addCell("Numero Radicado");
+            tabla.addCell("Origen");
+            tabla.addCell("Asunto");
+            tabla.addCell("Fecha Radicado");
+            for (int i = 0, j = 0; i < (3 * doc.size()); i = i + 4, j++) {
+                tabla.addCell(doc.get(j).getNumeroRadicado() + "");
+                tabla.addCell(doc.get(j).getOrigen());
+                tabla.addCell(doc.get(j).getAsunto().getNombre());
+                tabla.addCell(doc.get(j).getFechaRadicado());
+            }
+            document.add(tabla);
+            Paragraph fin = new Paragraph("\n\n");
+            document.add(fin);
+
+            Paragraph footer = new Paragraph("Copyright © Konrad Digital Document 2021");
+            footer.setAlignment(Element.ALIGN_BOTTOM);
+            footer.setAlignment(Element.ALIGN_CENTER);
+            document.add(footer);
 
             document.close();
         } catch (IOException ex) {

@@ -57,9 +57,9 @@ public class DocumentoController {
     }
 
     @GetMapping(path = "reada")
-    public ResponseEntity readDocAsignados() {
+    public ResponseEntity readDocAsignados(@RequestBody Documento documento) {
         try {
-            return new ResponseEntity(documentoService.readDocAsignados(2), HttpStatus.OK);
+            return new ResponseEntity(documentoService.readDocAsignados(documento.getNumeroRadicado()), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
