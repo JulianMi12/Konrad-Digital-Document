@@ -46,6 +46,16 @@ public class DocumentoController {
         }
     }
 
+    @GetMapping(path = "generarPdf")
+    public ResponseEntity regenerPDF(@RequestBody Documento documento) {
+        try {
+            documentoService.writePDF(documento);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping(path = "reada")
     public ResponseEntity readDocAsignados() {
         try {

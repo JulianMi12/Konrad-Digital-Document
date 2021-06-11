@@ -36,10 +36,24 @@ public class DocumentoService {
 
     @Autowired
     private DocumentoRepository documentoRepository;
+    @Autowired
+    private SendMail sendMail;
+    @Autowired
+    private FuncionarioService funcionarioService;
+    @Autowired
+    private AsuntoService asuntoService;
 
     public void crearDocumento(Documento documento) {
         documentoRepository.save(documento);
+        enviarEmail(documento);
+    }
 
+    private void enviarEmail(Documento documento) {
+        int codDestinatario = documento.getDestino().getIdFuncionario();
+        int codAsunto = documento.getAsunto().getIdAsunto();
+        String correoDestinatario = funcionarioService.getById(codDestinatario).getCorreo();
+        String contenido = "Sr/a. " + funcionarioService.getById(codDestinatario).getApellido() + ".\n\nTiene nueva correspondencia de Konrad Digital Document de parte de \"" + documento.getOrigen() + "\" con asunto \""+asuntoService.getById(codAsunto).getNombre()+"\" para resolver en su buzón de documentos.";
+        sendMail.sendMail("correokdd@gmail.com", correoDestinatario, "Nueva Correspondencia", contenido);
     }
 
     public ArrayList<Documento> readDocumento() {
@@ -79,50 +93,31 @@ public class DocumentoService {
         documentoRepository.delete(documento);
     }
 
-    public void writePDF(int id) {
-        ArrayList<Documento> documento = readDocAsignados(id);
-
-        Document document = new Document();
+    public void writePDF(Documento documento) {
         Calendar calendario = Calendar.getInstance();
         int hora, minutos, segundos;
         hora = calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND);
-
+        Document document = new Document();
         try {
             String path = new File(".").getCanonicalPath();
-            String FILE_NAME = path + "/Reporte_Asuntos_id:" + id + hora + "-" + minutos + "-" + segundos + ".pdf";
-
+            String FILE_NAME = path + "/Reporte_Asuntos_id=" + documento.getNumeroRadicado() + "_" + hora + "-" + minutos + "-" + segundos + ".pdf";
             PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
 
+            System.out.println("");
             document.open();
-
             Paragraph paragraphHello = new Paragraph();
-            paragraphHello.add("Listado de Reportes");
+            paragraphHello.add("Hello iText paragraph!");
             paragraphHello.setAlignment(Element.ALIGN_JUSTIFIED);
+
             document.add(paragraphHello);
-            Paragraph paragraphContenido = new Paragraph();
 
-            for (int i = 0; i < documento.size(); i++) {
-                Integer nRadicado = documento.get(i).getNumeroRadicado();
-                String personaEnvia = documento.get(i).getOrigen();
-                String nombreAsunto = documento.get(i).getAsunto().getNombre();
-                String fechaRadi = documento.get(i).getFechaRadicado();
-
-                paragraphContenido.add(nRadicado + personaEnvia + nombreAsunto + fechaRadi);
-
-            }
-
-            java.util.List<Element> paragraphList = new ArrayList<>();
-
-            paragraphList = paragraphContenido.breakUp();
-            document.add((Element) paragraphList);
             document.close();
-
-        } catch (FileNotFoundException | DocumentException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(DocumentoService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(DocumentoService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
