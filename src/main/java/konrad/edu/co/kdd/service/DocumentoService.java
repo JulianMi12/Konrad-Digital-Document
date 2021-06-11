@@ -79,10 +79,11 @@ public class DocumentoService {
         documentoRepository.delete(documento);
     }
 
-    public static void writePDF() throws DocumentException {
+    public void writePDF(int id) {
+        ArrayList<Documento> documento = readDocAsignados(id);
+
         Document document = new Document();
         Calendar calendario = Calendar.getInstance();
-        Calendar calendario2 = new GregorianCalendar();
         int hora, minutos, segundos;
         hora = calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
@@ -90,52 +91,38 @@ public class DocumentoService {
 
         try {
             String path = new File(".").getCanonicalPath();
-            String FILE_NAME = path + "/Reporte_Asuntos" +hora+"-"+minutos+"-"+segundos+".pdf";
+            String FILE_NAME = path + "/Reporte_Asuntos_id:" + id + hora + "-" + minutos + "-" + segundos + ".pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(new File(FILE_NAME)));
 
             document.open();
 
             Paragraph paragraphHello = new Paragraph();
-            paragraphHello.add("Reporte 1");
+            paragraphHello.add("Listado de Reportes");
             paragraphHello.setAlignment(Element.ALIGN_JUSTIFIED);
-
             document.add(paragraphHello);
+            Paragraph paragraphContenido = new Paragraph();
 
-            Paragraph paragraphLorem = new Paragraph();
-            paragraphLorem.add("SeÃ±ores\n"
-                    + "\n"
-                    + "\n"
-                    + "Me dirijo a ustedes respetuosamente para agradecer por la gran oportunidad de crecimiento dentro de la empresa que me han otorgado al ascenderme en dia de ayer a un cargo superior, y por tener en cuenta mi trabajo, esfuerzo y perseverancia para asumir esta nueva posicion y depositar su confianza en mÃ­.\n"
-                    + "\n"
-                    + "\n"
-                    + "Espero seguir siendo parte de este gran equipo de trabajo que se caracteriza por tener un optimo ambiente laboral y las excelentes herramientas que esta empresa me ha ofrecido desde que inicie mis labores aqui, por lo cual extiendo nuevamente mis mas sinceros agradecimientos, deseando muchos Ã©xitos para ustedes tambiÃ©n.\n"
-                    + "\n"
-                    + "\n"
-                    + "Cordialmente,\n");
+            for (int i = 0; i < documento.size(); i++) {
+                Integer nRadicado = documento.get(i).getNumeroRadicado();
+                String personaEnvia = documento.get(i).getOrigen();
+                String nombreAsunto = documento.get(i).getAsunto().getNombre();
+                String fechaRadi = documento.get(i).getFechaRadicado();
+
+                paragraphContenido.add(nRadicado + personaEnvia + nombreAsunto + fechaRadi);
+
+            }
 
             java.util.List<Element> paragraphList = new ArrayList<>();
 
-            paragraphList = paragraphLorem.breakUp();
-
-            Font f = new Font();
-            f.setFamily(FontFamily.COURIER.name());
-            f.setStyle(Font.BOLDITALIC);
-            f.setSize(8);
-
-            Paragraph p3 = new Paragraph();
-            p3.setFont(f);
-            p3.addAll(paragraphList);
-            p3.add("Jhonatan CalderÃ³n");
-
-            document.add(p3);
+            paragraphList = paragraphContenido.breakUp();
+            document.add((Element) paragraphList);
             document.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
