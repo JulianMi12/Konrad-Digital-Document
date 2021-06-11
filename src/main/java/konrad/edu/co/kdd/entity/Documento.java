@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package konrad.edu.co.kdd.entity;
 
 import java.io.Serializable;
@@ -16,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Grupo 2
+ * @author julia
  */
 @Entity
 @Table(name = "documento")
@@ -29,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Documento.findByFechaRadicado", query = "SELECT d FROM Documento d WHERE d.fechaRadicado = :fechaRadicado"),
     @NamedQuery(name = "Documento.findByOrigen", query = "SELECT d FROM Documento d WHERE d.origen = :origen"),
     @NamedQuery(name = "Documento.findByComentarios", query = "SELECT d FROM Documento d WHERE d.comentarios = :comentarios"),
-    @NamedQuery(name = "Documento.findByAnexo", query = "SELECT d FROM Documento d WHERE d.anexo = :anexo")})
+    @NamedQuery(name = "Documento.findByAnexo", query = "SELECT d FROM Documento d WHERE d.anexo = :anexo"),
+    @NamedQuery(name = "Documento.findByRespuesta", query = "SELECT d FROM Documento d WHERE d.respuesta = :respuesta")})
 public class Documento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,6 +56,8 @@ public class Documento implements Serializable {
     private String comentarios;
     @Column(name = "anexo")
     private String anexo;
+    @Column(name = "respuesta")
+    private String respuesta;
     @JoinColumn(name = "asunto", referencedColumnName = "id_asunto")
     @ManyToOne
     private Asunto asunto;
@@ -123,6 +131,14 @@ public class Documento implements Serializable {
         this.anexo = anexo;
     }
 
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
     public Asunto getAsunto() {
         return asunto;
     }
@@ -169,7 +185,7 @@ public class Documento implements Serializable {
 
     @Override
     public String toString() {
-        return "numeroRadicado = " + numeroRadicado + ", titulo= " + titulo + ", fechaDocumento = " + fechaDocumento + ", fechaRadicado = " + fechaRadicado + ", origen = " + origen + ", destino = " + destino.getIdFuncionario() + ", asunto = " + asunto.getNombre() + ", usuario_recibe = " + usaurioRecibe.getNombre() + ", comentarios = " + comentarios + ", anexo = " + anexo + " .\n";
+        return "konrad.edu.co.kdd.entity.Documento[ numeroRadicado=" + numeroRadicado + " ]";
     }
-
+    
 }

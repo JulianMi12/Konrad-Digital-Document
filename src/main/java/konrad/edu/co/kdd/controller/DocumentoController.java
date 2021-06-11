@@ -65,6 +65,16 @@ public class DocumentoController {
         }
     }
 
+    @PutMapping(path = "respuesta")
+    ResponseEntity respuestaDocumento(@RequestBody Documento documento) {
+        try {
+            documentoService.respuestaDocumento(documento);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping(path = "update")
     ResponseEntity updateDocumento(@RequestBody Documento documento) {
         try {

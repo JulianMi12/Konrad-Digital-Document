@@ -6,7 +6,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -20,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import konrad.edu.co.kdd.entity.Documento;
 import konrad.edu.co.kdd.repository.DocumentoRepository;
-import konrad.edu.co.kdd.repository.FooterPiePaginaiText;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -137,5 +135,22 @@ public class DocumentoService {
         } catch (DocumentException ex) {
             Logger.getLogger(DocumentoService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void respuestaDocumento(Documento documento) {
+        Documento docu = new Documento();
+
+        docu.setNumeroRadicado(documento.getNumeroRadicado());
+        docu.setTitulo(documentoRepository.findById(documento.getNumeroRadicado()).get().getTitulo());
+        docu.setFechaDocumento(documentoRepository.findById(documento.getNumeroRadicado()).get().getFechaDocumento());
+        docu.setFechaRadicado(documentoRepository.findById(documento.getNumeroRadicado()).get().getFechaRadicado());
+        docu.setOrigen(documentoRepository.findById(documento.getNumeroRadicado()).get().getOrigen());
+        docu.setDestino(documentoRepository.findById(documento.getNumeroRadicado()).get().getDestino());
+        docu.setAsunto(documentoRepository.findById(documento.getNumeroRadicado()).get().getAsunto());
+        docu.setUsaurioRecibe(documentoRepository.findById(documento.getNumeroRadicado()).get().getUsaurioRecibe());
+        docu.setComentarios(documentoRepository.findById(documento.getNumeroRadicado()).get().getComentarios());
+        docu.setAnexo(documentoRepository.findById(documento.getNumeroRadicado()).get().getAnexo());
+        docu.setRespuesta(documento.getRespuesta());
+        documentoRepository.save(docu);
     }
 }

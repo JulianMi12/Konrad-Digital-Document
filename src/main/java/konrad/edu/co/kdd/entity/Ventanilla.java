@@ -1,6 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package konrad.edu.co.kdd.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Grupo 2
+ * @author julia
  */
 @Entity
 @Table(name = "ventanilla")
@@ -37,6 +45,8 @@ public class Ventanilla implements Serializable {
     @Basic(optional = false)
     @Column(name = "contrase\u00f1a")
     private String contraseña;
+    @OneToMany(mappedBy = "usaurioRecibe")
+    private Collection<Documento> documentoCollection;
 
     public Ventanilla() {
     }
@@ -74,6 +84,15 @@ public class Ventanilla implements Serializable {
         this.contraseña = contraseña;
     }
 
+    @XmlTransient
+    public Collection<Documento> getDocumentoCollection() {
+        return documentoCollection;
+    }
+
+    public void setDocumentoCollection(Collection<Documento> documentoCollection) {
+        this.documentoCollection = documentoCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -96,7 +115,7 @@ public class Ventanilla implements Serializable {
 
     @Override
     public String toString() {
-        return " idUsuario = " + idUsuario + ", nombre = " + nombre + ", contrase\u00f1a = " + contraseña + " .\n";
+        return "konrad.edu.co.kdd.entity.Ventanilla[ idUsuario=" + idUsuario + " ]";
     }
     
 }
