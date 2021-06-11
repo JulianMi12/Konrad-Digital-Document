@@ -1,6 +1,7 @@
 package konrad.edu.co.kdd.controller;
 
 import konrad.edu.co.kdd.entity.Funcionario;
+import konrad.edu.co.kdd.service.DocumentoService;
 import konrad.edu.co.kdd.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class FuncionarioController {
 
     @Autowired
     private FuncionarioService funcionarioService;
+    private DocumentoService documentoService;
 
     @PostMapping(path = "create")
     public @ResponseBody
@@ -85,4 +87,5 @@ public class FuncionarioController {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
 }
