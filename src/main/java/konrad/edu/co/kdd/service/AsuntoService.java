@@ -39,6 +39,14 @@ public class AsuntoService {
         return asuntos;
     }
 
+    public Asunto getById(int id) {
+        try {
+            return asuntoRepository.findById(id).get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public void updateAsunto(Asunto asunto) {
         asuntoRepository.save(asunto);
     }

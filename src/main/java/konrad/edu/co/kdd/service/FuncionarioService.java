@@ -5,6 +5,7 @@ import java.util.Iterator;
 import konrad.edu.co.kdd.entity.Funcionario;
 import konrad.edu.co.kdd.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 /**
@@ -33,18 +34,13 @@ public class FuncionarioService {
         }
         return funcionarios;
     }
-    
-        public ArrayList<Funcionario> readFuncionarioo() {
-        ArrayList<Funcionario> funcionarios = new ArrayList<>();
-        Iterable rec1;
-        rec1 = funcionarioRepository.findAll();
-        Iterator<Funcionario> rec2 = rec1.iterator();
-        while (rec2.hasNext()) {
-            Funcionario funcionario;
-            funcionario = rec2.next();
-            funcionarios.add(funcionario);
+
+    public Funcionario getById(int id) {
+        try {
+            return funcionarioRepository.findById(id).get();
+        } catch (Exception e) {
+            return null;
         }
-        return funcionarios;
     }
 
     public void updateFuncionarios(Funcionario funcionario) {
@@ -54,4 +50,7 @@ public class FuncionarioService {
     public void deleteFuncionarios(Funcionario funcionario) {
         funcionarioRepository.delete(funcionario);
     }
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 }

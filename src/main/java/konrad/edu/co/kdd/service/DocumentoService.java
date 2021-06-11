@@ -13,10 +13,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import konrad.edu.co.kdd.entity.Asunto;
 import konrad.edu.co.kdd.entity.Documento;
+import konrad.edu.co.kdd.entity.Funcionario;
 import konrad.edu.co.kdd.repository.DocumentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,10 +30,17 @@ public class DocumentoService {
 
     @Autowired
     private DocumentoRepository documentoRepository;
+    @Autowired
+    private SendMail sendMail;
+    @Autowired
+    private FuncionarioService funcionarioService;
+        @Autowired
+    private AsuntoService asuntoService;
 
-    public void crearDocumento(Documento documento) {
+    public Documento crearDocumento(Documento documento) {
         documentoRepository.save(documento);
-
+        enviarEmail(documento);
+        return documento;
     }
 
     public ArrayList<Documento> readDocumento() {
@@ -66,12 +72,19 @@ public class DocumentoService {
         return documento;
     }
 
+    private void enviarEmail(Documento documento) {
+        int codDestinatario = documento.getDestino().getIdFuncionario();
+        int codAsunto = documento.getAsunto().getIdAsunto();
+        String correoDestinatario = funcionarioService.getById(codDestinatario).getCorreo();
+        String contenido = "Sr/a. "+funcionarioService.getById(codDestinatario).getApellido()+".\n\nTiene nueva correspondencia de Konrad Digital Document de parte de \""+documento.getOrigen()+"\" con asunto \""+asuntoService.getById(codAsunto).getNombre()+"\" para resolver en su buzón de documentos.";
+        sendMail.sendMail("konradMensajes@gmail.com", correoDestinatario, "Nueva Correspondencia", contenido);
+    }
+
     public static void main(String[] args) {
         writePDF();
     }
 
     private static void writePDF() {
-
         Document document = new Document();
 
         try {
