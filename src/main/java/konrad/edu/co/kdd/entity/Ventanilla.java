@@ -45,8 +45,6 @@ public class Ventanilla implements Serializable {
     @Basic(optional = false)
     @Column(name = "contrase\u00f1a")
     private String contraseña;
-    @OneToMany(mappedBy = "usaurioRecibe")
-    private Collection<Documento> documentoCollection;
 
     public Ventanilla() {
     }
@@ -82,15 +80,6 @@ public class Ventanilla implements Serializable {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-
-    @XmlTransient
-    public Collection<Documento> getDocumentoCollection() {
-        return documentoCollection;
-    }
-
-    public void setDocumentoCollection(Collection<Documento> documentoCollection) {
-        this.documentoCollection = documentoCollection;
     }
 
     @Override

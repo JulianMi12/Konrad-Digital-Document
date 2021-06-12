@@ -41,8 +41,6 @@ public class Asunto implements Serializable {
     private Integer idAsunto;
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "asunto")
-    private Collection<Documento> documentoCollection;
 
     public Asunto() {
     }
@@ -65,15 +63,6 @@ public class Asunto implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    @XmlTransient
-    public Collection<Documento> getDocumentoCollection() {
-        return documentoCollection;
-    }
-
-    public void setDocumentoCollection(Collection<Documento> documentoCollection) {
-        this.documentoCollection = documentoCollection;
     }
 
     @Override

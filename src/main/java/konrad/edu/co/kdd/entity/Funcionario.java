@@ -53,8 +53,6 @@ public class Funcionario implements Serializable {
     private String correo;
     @Column(name = "contrase\u00f1a")
     private String contraseña;
-    @OneToMany(mappedBy = "destino")
-    private Collection<Documento> documentoCollection;
 
     public Funcionario() {
     }
@@ -109,15 +107,6 @@ public class Funcionario implements Serializable {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-
-    @XmlTransient
-    public Collection<Documento> getDocumentoCollection() {
-        return documentoCollection;
-    }
-
-    public void setDocumentoCollection(Collection<Documento> documentoCollection) {
-        this.documentoCollection = documentoCollection;
     }
 
     @Override
